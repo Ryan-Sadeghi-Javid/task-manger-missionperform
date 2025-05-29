@@ -36,7 +36,6 @@ export default function Dashboard() {
   // Local state for modals and mobile UI toggles
   const [isCreating, setIsCreating] = useState(false) // Controls the Create Task modal
   const [editingTask, setEditingTask] = useState<string | null>(null) // Controls the Edit Task modal
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false) // (Optional) Could be used for a mobile sidebar
 
   return (
     <TaskProvider>
@@ -46,14 +45,6 @@ export default function Dashboard() {
           <div className="container flex h-16 items-center justify-between px-4 md:px-6">
             {/* Left side of header: menu button and app name */}
             <div className="flex items-center">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="md:hidden mr-2"
-                onClick={() => setIsMobileMenuOpen(true)}
-              >
-                <Menu className="h-5 w-5" />
-              </Button>
               <h1 className="text-2xl font-bold">Task Manager</h1>
             </div>
 

@@ -109,7 +109,7 @@ export function TaskProvider({ children }: { children: ReactNode }) {
     if (isAuthenticated) {
       fetchTasks()
     }
-  }, [isAuthenticated, fetchTasks])
+  }, [isAuthenticated])
 
   // Provide all task-related state and functions to children
   return (

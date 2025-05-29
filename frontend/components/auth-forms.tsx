@@ -75,12 +75,18 @@ export default function AuthForms() {
 
         // If register succeeds, optionally clear fields
         setRegisterData({ username: "", password: "", confirmPassword: "" })
-    } catch (err: any) {
-        // Show auth-context error and stay on register tab
-        setActiveTab("register")
-        setFormError(err.message || "Registration failed. Please try again.")
+    } catch (err: unknown) {
+      setActiveTab("register")
+
+      let errorMessage = "Registration failed. Please try again."
+
+      if (err instanceof Error) {
+        errorMessage = err.message
+      }
+
+      setFormError(errorMessage)
     } finally {
-        setLoading(false)
+      setLoading(false)
     }
     }
 
