@@ -49,7 +49,7 @@ export default function Dashboard() {
             </div>
 
             {/* Right side of header: theme toggle, add task, and logout */}
-            <div className="flex items-center gap-4">
+            <div className="hidden sm:flex flex items-center gap-4">
               <ThemeToggle />
               <Button onClick={() => setIsCreating(true)}>
                 <PlusCircle className="mr-2 h-4 w-4" />
