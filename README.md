@@ -34,7 +34,7 @@ TASK-MANGER-MISSIONPERFORM/
 │   ├── tailwind.config.js        # Tailwind theme and dark mode tokens
 │   ├── tsconfig.json             # TypeScript config
 │   ├── package.json              # Frontend scripts and dependencies
-│   └──  package-lock.json         # Frontend lockfile
+│   └── package-lock.json         # Frontend lockfile
 └── README.md                 # project documentation (this file)
 ```
 ---
