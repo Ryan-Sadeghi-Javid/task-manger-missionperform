@@ -125,6 +125,8 @@ npm run dev
 
 Frontend runs at `http://localhost:3000`
 
+> ⚠️ No `.env.local` file is required in the frontend unless you plan to customize environment-specific variables (e.g., NEXT_PUBLIC_API_URL).
+
 ---
 
 ## Development Process & Decisions
@@ -136,7 +138,7 @@ I approached this project using an iterative design methodology:
 
 - Started with core backend functionality (task CRUD + authentication)
 - Did thorough testing of backend logic with postman
-- Tested edge cases ()
+- Tested edge cases including creating a task with no title, retrieving a task with an invalid ID, updating a task that doesn't exist, etc
 - Connected a simple frontend using `axios` to test flows manually  
 - Gradually layered on UI polish, responsiveness, and bonus features like OpenAI integration
 
