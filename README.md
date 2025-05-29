@@ -81,7 +81,7 @@ TASK-MANGER-MISSIONPERFORM/
 
 ```bash
 git clone https://github.com/Ryan-Sadeghi-Javid/task-manger-missionperform.git
-cd task-manager-missionperform
+cd task-manger-missionperform
 ```
 
 ### 2. Backend Setup
