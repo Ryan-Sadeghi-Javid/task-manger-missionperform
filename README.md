@@ -94,7 +94,7 @@ npm install
 Create a `.env` file in `backend/`:
 
 ```
-MONGO_URI=mongodb://localhost:27017/taskmanager
+MONGO_URI=[INSERT_LOCAL_MONGO_URI]
 JWT_SECRET=your_jwt_secret
 OPENAI_API_KEY=your_openai_key
 PORT=5000
