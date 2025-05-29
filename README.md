@@ -96,7 +96,7 @@ Create a `.env` file in `backend/`:
 ```
 MONGO_URI=[INSERT_LOCAL_MONGO_URI]
 JWT_SECRET=your_jwt_secret
-OPENAI_API_KEY=your_openai_key
+OPENAI_API_KEY=your_openai_key [NOTE: FOR MISSIONPERFORM HIRING TEAM, I have put my personal OpenAI API key in the description of the YouTube video sent, for demoing purposes]
 PORT=5000
 ```
 
