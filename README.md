@@ -2,6 +2,8 @@
 
 A full-stack task management application built with the MERN stack (MongoDB, Express, React, Node.js), featuring user authentication, task filtering/sorting, and optional AI-generated task descriptions via OpenAI.
 
+- 🌐 LIVE SITE: https://task-manger-missionperform.vercel.app/
+
 ---
 
 ## Project Structure
