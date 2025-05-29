@@ -17,14 +17,8 @@ import TaskForm from "@/components/task-form"
 
 // UI elements
 import { Button } from "@/components/ui/button"
-import { PlusCircle, LogOut, Menu } from "lucide-react"
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog"
+import { PlusCircle, LogOut } from "lucide-react"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 
 // Dark mode toggle component
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -49,18 +43,14 @@ export default function Dashboard() {
             </div>
 
             {/* Right side of header: theme toggle, add task, and logout */}
-            <div className="hidden sm:flex flex items-center gap-4">
+            <div className="flex items-center gap-4">
               <ThemeToggle />
-              <Button onClick={() => setIsCreating(true)}>
+              {/* Only show this button on screens larger than small (sm) */}
+              <Button onClick={() => setIsCreating(true)} className="hidden sm:flex">
                 <PlusCircle className="mr-2 h-4 w-4" />
                 New Task
               </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={logout}
-                aria-label="Logout"
-              >
+              <Button variant="ghost" size="icon" onClick={logout} aria-label="Logout">
                 <LogOut className="h-5 w-5" />
               </Button>
             </div>
@@ -83,32 +73,20 @@ export default function Dashboard() {
             <DialogContent className="sm:max-w-[500px] dark:bg-gray-800 dark:border-gray-700">
               <DialogHeader>
                 <DialogTitle className="text-xl">Create New Task</DialogTitle>
-                <DialogDescription>
-                  Add a new task to your list. Fill out the details below.
-                </DialogDescription>
+                <DialogDescription>Add a new task to your list. Fill out the details below.</DialogDescription>
               </DialogHeader>
               <TaskForm onSuccess={() => setIsCreating(false)} />
             </DialogContent>
           </Dialog>
 
           {/* Modal for editing an existing task */}
-          <Dialog
-            open={!!editingTask}
-            onOpenChange={(open) => !open && setEditingTask(null)}
-          >
+          <Dialog open={!!editingTask} onOpenChange={(open) => !open && setEditingTask(null)}>
             <DialogContent className="sm:max-w-[500px] dark:bg-gray-800 dark:border-gray-700">
               <DialogHeader>
                 <DialogTitle className="text-xl">Edit Task</DialogTitle>
-                <DialogDescription>
-                  Make changes to your task. Click update when you're done.
-                </DialogDescription>
+                <DialogDescription>Make changes to your task. Click update when you're done.</DialogDescription>
               </DialogHeader>
-              {editingTask && (
-                <TaskForm
-                  taskId={editingTask}
-                  onSuccess={() => setEditingTask(null)}
-                />
-              )}
+              {editingTask && <TaskForm taskId={editingTask} onSuccess={() => setEditingTask(null)} />}
             </DialogContent>
           </Dialog>
 
