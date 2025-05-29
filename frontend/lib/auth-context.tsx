@@ -56,8 +56,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       api.setToken(token)
 
       setUser({ id: "user-id", username })
-    } catch (err: any) {
-      setError(err.response?.data?.message || "Login failed. Please try again.")
+    } catch (err: unknown) {
+      if (err && typeof err === "object" && "response" in err) {
+        const axiosError = err as { response?: { data?: { message?: string } } }
+        setError(axiosError.response?.data?.message || "Login failed. Please try again.")
+      } else {
+        setError("Login failed. Please try again.")
+      }
     } finally {
       setLoading(false)
     }
@@ -73,23 +78,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
         // Only login if registration succeeded
         await login(username, password)
-    } catch (err: any) {
-        const message = err.response?.data?.message || "Registration failed. Please try again."
+    } catch (err: unknown) {
+      let message = "Registration failed. Please try again."
 
-        if (
-        err.response?.status === 400 &&
-        message.toLowerCase().includes("username")
-        ) {
+      if (err && typeof err === "object" && "response" in err) {
+        const axiosError = err as { response?: { data?: { message?: string } } }
+        message = axiosError.response?.data?.message || message
+      }
+
+      if (message.toLowerCase().includes("username")) {
         setError("Username already exists. Please choose a different one.")
         throw new Error("Username already exists. Please choose a different one.")
-        } else {
+      } else {
         setError(message)
         throw new Error(message)
-        }
-
-
-        // 👇 Prevent further execution
-        return
+      }
     } finally {
         setLoading(false)
     }

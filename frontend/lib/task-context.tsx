@@ -45,9 +45,10 @@ export function TaskProvider({ children }: { children: ReactNode }) {
       setError(null)
       const response = await api.get("/tasks")
       setTasks(response.data) // Set fetched tasks into state
-    } catch (err: any) {
-      setError(err.response?.data?.message || "Failed to fetch tasks")
-      console.error("Error fetching tasks:", err)
+    } catch (err: unknown) {
+      const message = (err as any)?.response?.data?.message || "Failed to fetch task"
+      setError(message)
+      throw err
     } finally {
       setLoading(false)
     }
@@ -60,8 +61,10 @@ export function TaskProvider({ children }: { children: ReactNode }) {
       setError(null)
       const response = await api.post("/tasks", task)
       setTasks((prevTasks) => [...prevTasks, response.data]) // Append new task to list
-    } catch (err: any) {
-      setError(err.response?.data?.message || "Failed to create task")
+    } catch (err: unknown) {
+      const message = (err as any)?.response?.data?.message || "Failed to create task"
+      setError(message)
+      throw err
     } finally {
       setLoading(false)
     }
@@ -75,8 +78,10 @@ export function TaskProvider({ children }: { children: ReactNode }) {
       const response = await api.put(`/tasks/${id}`, task)
       // Replace the updated task in the task list
       setTasks((prevTasks) => prevTasks.map((t) => (t._id === id ? { ...t, ...response.data } : t)))
-    } catch (err: any) {
-      setError(err.response?.data?.message || "Failed to update task")
+    } catch (err: unknown) {
+      const message = (err as any)?.response?.data?.message || "Failed to update task"
+      setError(message)
+      throw err
     } finally {
       setLoading(false)
     }
@@ -90,8 +95,10 @@ export function TaskProvider({ children }: { children: ReactNode }) {
       await api.delete(`/tasks/${id}`)
       // Remove the task from the list
       setTasks((prevTasks) => prevTasks.filter((t) => t._id !== id))
-    } catch (err: any) {
-      setError(err.response?.data?.message || "Failed to delete task")
+    } catch (err: unknown) {
+      const message = (err as any)?.response?.data?.message || "Failed to update task"
+      setError(message)
+      throw err
     } finally {
       setLoading(false)
     }
@@ -102,7 +109,7 @@ export function TaskProvider({ children }: { children: ReactNode }) {
     if (isAuthenticated) {
       fetchTasks()
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated, fetchTasks])
 
   // Provide all task-related state and functions to children
   return (

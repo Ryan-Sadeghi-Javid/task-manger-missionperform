@@ -51,9 +51,9 @@ export function truncateString(str: string, length: number): string {
  * @param ms - Delay time in milliseconds (default: 300ms)
  * @returns A debounced version of the function
  */
-export function debounce<T extends (...args: any[]) => any>(fn: T, ms = 300) {
+export function debounce<T extends (...args: unknown[]) => unknown>(fn: T, ms = 300) {
   let timeoutId: ReturnType<typeof setTimeout>
-  return function (this: any, ...args: Parameters<T>) {
+  return function (this: unknown, ...args: Parameters<T>) {
     clearTimeout(timeoutId)
     timeoutId = setTimeout(() => fn.apply(this, args), ms)
   }

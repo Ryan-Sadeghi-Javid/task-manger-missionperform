@@ -32,10 +32,10 @@ export const api = {
   get: (url: string) => instance.get(url),
 
   // Make a POST request with data to a given URL
-  post: (url: string, data: any) => instance.post(url, data),
+  post: <T = unknown>(url: string, data: T) => instance.post(url, data),
 
   // Make a PUT request with data to update a resource
-  put: (url: string, data: any) => instance.put(url, data),
+  put: <T = unknown>(url: string, data: T) => instance.put(url, data),
 
   // Make a DELETE request to remove a resource
   delete: (url: string) => instance.delete(url),
